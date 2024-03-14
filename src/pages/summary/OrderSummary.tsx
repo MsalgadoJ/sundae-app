@@ -1,9 +1,11 @@
 import SummaryForm from './SummaryForm';
 import { useOrderDetails } from '../../contexts/OrderDetails';
 import { formatCurrency } from '../../utilities';
+import { OrderPhaseComponentProps } from '../confirmation/OrderConfirmation';
 
-// export default function OrderSummary({ setOrderPhase }) {
-export default function OrderSummary() {
+export default function OrderSummary({
+  setOrderPhase,
+}: OrderPhaseComponentProps) {
   const { totals, optionCounts } = useOrderDetails();
 
   const scoopArray = Object.entries(optionCounts.scoops);
@@ -23,8 +25,7 @@ export default function OrderSummary() {
       <ul>{scoopList}</ul>
       <h2>Toppings: {formatCurrency(totals.toppings)}</h2>
       <ul>{toppingList}</ul>
-      {/* <SummaryForm setOrderPhase={setOrderPhase} /> */}
-      <SummaryForm />
+      <SummaryForm setOrderPhase={setOrderPhase} />
     </div>
   );
 }
