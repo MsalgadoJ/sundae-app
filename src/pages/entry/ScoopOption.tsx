@@ -3,12 +3,15 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useOrderDetails } from '../../contexts/OrderDetails';
 
-interface ScoopOptionsProps {
+export interface OptionsComponentProps {
   name: string;
   imagePath: string;
 }
 
-export default function ScoopOptions({ name, imagePath }: ScoopOptionsProps) {
+export default function ScoopOptions({
+  name,
+  imagePath,
+}: OptionsComponentProps) {
   const { updateItemCount } = useOrderDetails();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>

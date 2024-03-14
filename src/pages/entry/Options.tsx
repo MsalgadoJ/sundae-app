@@ -18,10 +18,19 @@ export default function Options({ optionType }: OptionsProps) {
   const { totals } = useOrderDetails();
 
   useEffect(() => {
+    // create an abortController to attach to network request
+    const controller = new AbortController();
     axios
-      .get(`http://localhost:3030/${optionType}`)
+      .get(`http://localhost:3030/${optionType}`, { signal: controller.signal })
       .then((response) => setItems(response.data))
-      .catch(() => setError(true));
+      .catch((error) => {
+        if (error.name !== 'CanceledError') setError(true);
+      });
+
+    // abort axios call on component unmount
+    return () => {
+      controller.abort();
+    };
   }, [optionType]);
 
   if (error) {
