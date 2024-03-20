@@ -25,7 +25,6 @@ test("order button should be disabled if there are no scoops selected", async ()
   const user = userEvent.setup();
 
   render(<OrderEntry setOrderPhase={vi.fn()} />);
-  screen.debug();
 
   // check initial conditions: button should be disabled
   const orderButton = screen.getByRole("button", { name: /order/i });
@@ -36,7 +35,6 @@ test("order button should be disabled if there are no scoops selected", async ()
   });
   await user.clear(vanillaInput);
   await user.type(vanillaInput, "1");
-  screen.debug();
 
   expect(orderButton).toBeEnabled();
 
