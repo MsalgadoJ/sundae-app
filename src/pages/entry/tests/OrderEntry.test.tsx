@@ -5,7 +5,7 @@ import { server } from "@/mocks/server";
 import OrderEntry from "../OrderEntry";
 import userEvent from "@testing-library/user-event";
 
-test.skip("handles error for scoops and toppings routes", async () => {
+test("handles error for scoops and toppings routes", async () => {
   server.resetHandlers(
     http.get("http://localhost:3030/scoops", () => {
       return new HttpResponse(null, { status: 500 });
