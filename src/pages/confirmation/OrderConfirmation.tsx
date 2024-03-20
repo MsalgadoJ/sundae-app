@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Button from 'react-bootstrap/Button';
-import { useOrderDetails } from '../../contexts/OrderDetails';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Button from "react-bootstrap/Button";
+import { useOrderDetails } from "../../contexts/OrderDetails";
 
 export interface OrderPhaseComponentProps {
   setOrderPhase: (orderPhase: string) => void;
@@ -19,7 +19,6 @@ export default function OrderConfirmation({
       // and send with POST
       .post(`http://localhost:3030/order`)
       .then((response) => {
-        console.log('respuesta order', response.data);
         setOrderNumber(response.data.orderNumber);
       })
       .catch(() => {
@@ -32,7 +31,7 @@ export default function OrderConfirmation({
     resetOrder();
 
     // send back to order page
-    setOrderPhase('inProgress');
+    setOrderPhase("inProgress");
   }
 
   const newOrderButton = (
@@ -41,10 +40,10 @@ export default function OrderConfirmation({
 
   if (orderNumber) {
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: "center" }}>
         <h1>Thank You!</h1>
         <p>Your order number is {orderNumber}</p>
-        <p style={{ fontSize: '25%' }}>
+        <p style={{ fontSize: "25%" }}>
           as per our terms and conditions, nothing will happen now
         </p>
         {newOrderButton}
